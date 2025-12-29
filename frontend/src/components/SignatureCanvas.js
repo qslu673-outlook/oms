@@ -39,7 +39,6 @@ const SignatureCanvas = ({ onSave, width = 600, height = 300 }) => {
 
       return () => {
         window.removeEventListener('resize', resizeCanvas);
-        pad.off();
       };
     }
   }, []);

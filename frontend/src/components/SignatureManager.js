@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Space, message, Popconfirm, Image, Tag, Card } from 'antd';
-import { PlusOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
+import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import SignatureGenerator from './SignatureGenerator';
 import axios from 'axios';
 import dayjs from 'dayjs';
@@ -9,10 +9,6 @@ const SignatureManager = ({ orderId = null }) => {
   const [signatures, setSignatures] = useState([]);
   const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-
-  useEffect(() => {
-    fetchSignatures();
-  }, [orderId]);
 
   const fetchSignatures = async () => {
     setLoading(true);
@@ -29,6 +25,11 @@ const SignatureManager = ({ orderId = null }) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchSignatures();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderId]);
 
   const handleDelete = async (id) => {
     try {
